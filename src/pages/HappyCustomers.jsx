@@ -9,7 +9,7 @@ const HappyCustomers = () => {
       profession: "Graphic Designer",
       quote: "The best coffee I've ever had! The ambiance is perfect and the service is exceptional!",
       rating: 5,
-      avatar: "https://t4.ftcdn.net/jpg/10/40/37/65/240_F_1040376541_9FNLFFpxUGzVPmoVLnC780bDZVW7qYgz.jpg"
+      avatar: "/api/placeholder/100/100"
     },
     {
       id: 2,
@@ -17,7 +17,7 @@ const HappyCustomers = () => {
       profession: "Software Engineer",
       quote: "Coffee Haven has become my daily ritual. Their attention to detail in every cup is remarkable.",
       rating: 5,
-      avatar: "https://t3.ftcdn.net/jpg/04/88/08/12/240_F_488081207_aRcVbcZ46xxR4RAIwD7Lm2hAS4RRayXC.jpg"
+      avatar: "/api/placeholder/100/100"
     },
     {
       id: 3,
@@ -25,7 +25,7 @@ const HappyCustomers = () => {
       profession: "Marketing Manager",
       quote: "Not just a coffee shop, but a community. The flavors are rich, and the atmosphere is always welcoming.",
       rating: 5,
-      avatar: "https://t3.ftcdn.net/jpg/08/50/26/30/240_F_850263029_XLVjG2IIu4dsYBgP3HZRL2eLtGzXAm35.jpg"
+      avatar: "/api/placeholder/100/100"
     },
     {
       id: 4,
@@ -33,30 +33,34 @@ const HappyCustomers = () => {
       profession: "Entrepreneur",
       quote: "Perfect spot for both work and relaxation. The coffee quality is consistently outstanding!",
       rating: 5,
-      avatar: "https://t3.ftcdn.net/jpg/09/25/33/36/240_F_925333691_lqFajHS0BvXl3hyVsxjMrxlAvc1MVn9j.jpg"
+      avatar: "/api/placeholder/100/100"
     }
   ];
 
   const customStyles = `
     .happy-customers-section {
-      background-color: #795757;
-      padding: 4rem 0;
-      color: #FFF0D1;
+      background: linear-gradient(135deg, var(--coffee-medium) 0%, var(--coffee-dark) 100%);
+      padding: 6rem 0;
+      color: var(--coffee-cream);
+      position: relative;
+      overflow: hidden;
     }
 
     .happy-customers-title {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--coffee-cream);
       text-align: center;
-      margin-bottom: 3rem;
-      font-size: 2.5rem;
-      color: #FFF0D1;
+      margin-bottom: 4rem;
     }
 
     .customer-card {
-      background-color: rgba(255, 240, 209, 0.1);
-      border-radius: 15px;
-      padding: 2rem;
-      margin-bottom: 1.5rem;
+      background: rgba(255, 243, 228, 0.05);
       backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 243, 228, 0.1);
+      border-radius: 20px;
+      padding: 2.5rem;
+      height: 100%;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
@@ -64,24 +68,26 @@ const HappyCustomers = () => {
 
     .customer-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     }
 
     .quote-icon {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      color: rgba(255, 240, 209, 0.2);
-      font-size: 3rem;
+      top: 1.5rem;
+      right: 1.5rem;
+      color: var(--coffee-light);
+      opacity: 0.2;
+      font-size: 2.5rem;
     }
 
     .customer-quote {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--coffee-cream);
+      font-style: italic;
+      margin-bottom: 2rem;
       position: relative;
       z-index: 1;
-      font-style: italic;
-      margin-bottom: 1.5rem;
-      color: #FFF0D1;
-      font-size: 1.1rem;
     }
 
     .customer-info {
@@ -91,17 +97,18 @@ const HappyCustomers = () => {
     }
 
     .customer-avatar {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      border: 4px solid #FFF0D1;
-      background-color: #664343;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border: 3px solid var(--coffee-light);
       overflow: hidden;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .customer-card:hover .customer-avatar {
+      transform: scale(1.1);
+      border-color: var(--coffee-cream);
     }
 
     .customer-avatar img {
@@ -110,42 +117,53 @@ const HappyCustomers = () => {
       object-fit: cover;
     }
 
-    .customer-card:hover .customer-avatar {
-      transform: scale(1.05);
-    }
-
     .customer-details {
       flex-grow: 1;
     }
 
     .customer-name {
-      font-weight: bold;
-      color: #FFF0D1;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--coffee-cream);
       margin-bottom: 0.25rem;
-      font-size: 1.2rem;
     }
 
     .customer-profession {
-      color: rgba(255, 240, 209, 0.7);
-      font-size: 1rem;
+      color: var(--coffee-light);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
     }
 
     .rating-stars {
-      color: #FFD700;
+      color: var(--coffee-gold);
       display: flex;
       gap: 0.25rem;
-      font-size: 1.2rem;
+    }
+
+    .underline {
+      width: 60px;
+      height: 4px;
+      background: var(--coffee-light);
+      margin: 1rem auto;
+      border-radius: 2px;
     }
 
     @media (max-width: 768px) {
+      .happy-customers-section {
+        padding: 4rem 0;
+      }
+
+      .happy-customers-title {
+        font-size: 2.5rem;
+      }
+
       .customer-info {
         flex-direction: column;
         text-align: center;
       }
 
-      .customer-avatar {
-        width: 80px;
-        height: 80px;
+      .rating-stars {
+        justify-content: center;
       }
     }
   `;
@@ -153,15 +171,21 @@ const HappyCustomers = () => {
   return (
     <>
       <style>{customStyles}</style>
-      <section id="happy-customers" className="happy-customers-section">
+      <section id="happy-customers" className=" happy-customers-section ">
         <div className="container">
-          <h2 className="happy-customers-title">Happy Customers</h2>
-          <div className="row">
-            {customers.map((customer) => (
-              <div key={customer.id} className="col-md-6 mb-4">
-                <div className="customer-card">
+          <h2 className="happy-customers-title animate-fade-in">
+            Happy Customers
+            <div className="underline"></div>
+          </h2>
+          <div className="row g-4">
+            {customers.map((customer, index) => (
+              <div key={customer.id} className="col-lg-6">
+                <div 
+                  className="customer-card animate-fade-in" 
+                  style={{ animationDelay: `${index * 0.2}s` }}
+                >
                   <FaQuoteLeft className="quote-icon" />
-                  <p className="customer-quote">"{customer.quote}"</p>
+                  <p className="customer-quote">&#34;{customer.quote}&#34;</p>
                   <div className="customer-info">
                     <div className="customer-avatar">
                       <img 
@@ -174,8 +198,8 @@ const HappyCustomers = () => {
                       <h3 className="customer-name">{customer.name}</h3>
                       <p className="customer-profession">{customer.profession}</p>
                       <div className="rating-stars">
-                        {[...Array(customer.rating)].map((_, index) => (
-                          <FaStar key={index} />
+                        {[...Array(customer.rating)].map((_, i) => (
+                          <FaStar key={i} size={16} />
                         ))}
                       </div>
                     </div>
