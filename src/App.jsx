@@ -1,8 +1,12 @@
-import './App.css';
-import MainPage from './components/main_page';
+import "./App.css";
+import CoffeeLandingPage from "./pages/main_page";
 
 function App() {
-  return <MainPage />;
+  return (
+    <>
+      <CoffeeLandingPage />
+    </>
+  );
 }
 
 export default App;
